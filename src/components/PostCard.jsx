@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
-  const { title, body } = post;
+  const { title, body, id } = post;
   return (
     <div className="bg-zinc-800 p-6 rounded-lg">
       <h4 className="text-2xl mb-3">{title}</h4>
       <p>{body}</p>
-      <button className="bg-zinc-700 mt-3 px-4 py-1.5 rounded hover:bg-zinc-900 duration-300 cursor-pointer">
+      <Link
+        to={`/card-details/${id}`}
+        className="bg-zinc-700 block w-fit mt-3 px-4 py-1.5 rounded hover:bg-zinc-900 duration-300 cursor-pointer"
+      >
         Details
-      </button>
+      </Link>
     </div>
   );
 };
@@ -17,6 +21,7 @@ PostCard.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };
 
